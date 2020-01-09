@@ -15,7 +15,6 @@ import { HeaderComponent } from './header/header.component';
     RouterModule,
     BrowserAnimationsModule
   ],
-  exports: [
-    HeaderComponent]
+  exports: [HeaderComponent]
 })
 export class SharedModule { }

@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ApplyCreditComponent } from './apply-credit.component';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { CurrencyPipe } from '@angular/common';
 
 describe('ApplyCreditComponent', () => {
   let component: ApplyCreditComponent;
@@ -8,7 +12,10 @@ describe('ApplyCreditComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ApplyCreditComponent ]
+      imports: [RouterModule.forRoot([]),
+      ReactiveFormsModule],
+      declarations: [ ApplyCreditComponent ],
+      providers: [CurrencyPipe]
     })
     .compileComponents();
   }));

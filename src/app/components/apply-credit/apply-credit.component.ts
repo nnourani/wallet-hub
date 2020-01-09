@@ -1,7 +1,7 @@
-import { CurrencyPipe, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { Location, CurrencyPipe } from '@angular/common';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { IPersonalInfo } from 'src/app/models/personal-info';
 
 @Component({
@@ -13,12 +13,10 @@ export class ApplyCreditComponent implements OnInit {
   cardId: number;
   personalInfo: IPersonalInfo = {};
   personalForm: FormGroup;
-  constructor(
-    private location: Location,
-    private fb: FormBuilder,
-    private route: ActivatedRoute,
-    private currencyPipe: CurrencyPipe
-  ) {}
+  constructor(private location: Location,
+              private fb: FormBuilder,
+              private route: ActivatedRoute,
+              private currencyPipe: CurrencyPipe) { }
 
   ngOnInit() {
     this.route.params.subscribe(param => {
@@ -30,10 +28,10 @@ export class ApplyCreditComponent implements OnInit {
         Validators.required
       ]),
       lastName: new FormControl(this.personalInfo.lastName, [
-        Validators.required
+        Validators.required,
       ]),
       cardName: new FormControl(this.personalInfo.cardName, [
-        Validators.required
+        Validators.required,
       ]),
       email: new FormControl(this.personalInfo.email, [
         Validators.required,
@@ -52,10 +50,10 @@ export class ApplyCreditComponent implements OnInit {
   }
 
   submit() {
-    if (!this.personalForm.invalid) {
-      alert('Successfully Applied');
-      this.location.back();
-    } else {
+   if (!this.personalForm.invalid) {
+    alert('Successfully Applied');
+    this.location.back();
+   } else {
       this.firstName.markAsTouched();
       this.lastName.markAsTouched();
       this.cardName.markAsTouched();
@@ -67,12 +65,10 @@ export class ApplyCreditComponent implements OnInit {
   }
 
   transformTotalIncome(element) {
-    this.personalForm.value.totalIncome = this.currencyPipe.transform(
-      this.personalForm.value.totalIncome,
-      '$'
-    );
+    this.personalForm.value.totalIncome = this.currencyPipe.transform(this.personalForm.value.totalIncome, '$');
+    console.log(this.personalForm.value.totalIncome);
     element.target.value = this.personalForm.value.totalIncome;
-  }
+}
 
   back() {
     this.location.back();

@@ -103,7 +103,7 @@
         <input type="text" id="annoual-income" class="form-control"
         required
         formControlName="totalIncome"
-        [value]="personalForm.get('totalIncome').value | CurrencyFormat"/>
+        (blur)="transformTotalIncome($event)"/>
         <div
           *ngIf="totalIncome.invalid && (totalIncome.dirty || totalIncome.touched)"
           class="alert alert-danger"

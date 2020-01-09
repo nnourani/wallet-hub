@@ -9,7 +9,7 @@ import { ICard } from 'src/app/models/card';
 })
 export class CardInfoComponent implements OnInit {
 
-  @Input() card: ICard;
+  @Input() card: ICard = {};
   @Input() lastItem = false;
   @Output() apply = new EventEmitter();
   @Output() showReview = new EventEmitter();
